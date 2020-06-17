@@ -156,6 +156,28 @@ public class Member {
 		return mv;
 	}
 	
+	
+	// TEST// TEST// TEST// TEST// TEST
+	@RequestMapping("/memberEdit.cls")
+	public ModelAndView getMember(ModelAndView mv) {
+		String view = "member/memberEdit";
+		// 할일
+		// 1. 받을 데이터는 없으므로 보낼 데이터만 만들면 된다.
+		ArrayList<String> color = getColorList();
+		
+		// 1-2. 회원 버튼에 필요한 리스트 가져오기
+		ArrayList<MemberVO> list = (ArrayList<MemberVO>) mDAO.getList();
+		
+		// 2. 데이터가 준비 되어었으면 데이터를 넘겨주고
+		mv.addObject("COLOR", color); // jsp 프로젝트의 req.setAttribute() 와 같은 기능
+		mv.addObject("LIST", list);
+		// 3. 뷰도 넘겨주고
+		mv.setViewName(view);
+		return mv;
+	}
+	// TEST// TEST// TEST// TEST// TEST
+	
+	
 	// 회원 버튼 리스트 페이지 보이기 요청 처리 함수
 	@RequestMapping("/memberList.cls")
 	public ModelAndView getList(ModelAndView mv) {
